@@ -26,13 +26,14 @@
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
 
+    <div class="absolute top-4 right-4 z-10">
+        <button onclick="setLanguage('ko')" class="text-sm text-white bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded-full transition">한국어</button>
+        <button onclick="setLanguage('en')" class="text-sm text-white bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded-full transition">English</button>
+    </div>
+
     <div class="bg-white max-w-md w-full rounded-2xl shadow-2xl overflow-hidden">
         
-        <header class="bg-slate-900 p-6 text-center text-white relative">
-            <div class="absolute top-4 right-4">
-                <button onclick="setLanguage('ko')" class="text-sm text-white bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded-full transition">한국어</button>
-                <button onclick="setLanguage('en')" class="text-sm text-white bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded-full transition">English</button>
-            </div>
+        <header class="bg-slate-900 p-6 text-center text-white">
             <h1 class="text-3xl mb-2 font-king text-yellow-500" data-i18n="title">내가 왕이 될 상인가?</h1>
             <p class="text-gray-300 text-sm" data-i18n="subtitle">인공지능이 분석하는 나의 대통령 관상</p>
         </header>

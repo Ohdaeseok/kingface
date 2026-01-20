@@ -1,14 +1,154 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내가 왕이 될 상인가?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 폰트 설정 (구글 폰트: 궁서체 느낌의 Gugi, 본문용 Noto Sans) */
+        @import url('https://fonts.googleapis.com/css2?family=Gugi&family=Noto+Sans+KR:wght@400;700&display=swap');
+        
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .font-king { font-family: 'Gugi', cursive; }
+        
+        /* 로딩 애니메이션 */
+        .loader {
+            border-top-color: #F59E0B;
+            -webkit-animation: spinner 1.5s linear infinite;
+            animation: spinner 1.5s linear infinite;
+        }
+        @keyframes spinner {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
-<body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div class="bg-white max-w-md w-full rounded-2xl shadow-2xl overflow-hidden">
+        
+        <header class="bg-slate-900 p-6 text-center text-white relative">
+            <div class="absolute top-4 right-4">
+                <button onclick="setLanguage('ko')" class="text-sm text-white bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded-full transition">한국어</button>
+                <button onclick="setLanguage('en')" class="text-sm text-white bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded-full transition">English</button>
+            </div>
+            <h1 class="text-3xl mb-2 font-king text-yellow-500" data-i18n="title">내가 왕이 될 상인가?</h1>
+            <p class="text-gray-300 text-sm" data-i18n="subtitle">인공지능이 분석하는 나의 대통령 관상</p>
+        </header>
+
+        <div class="p-6">
+            
+            <div id="upload-section" class="flex flex-col items-center transition-opacity duration-300">
+                <div class="w-full h-64 border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 flex flex-col justify-center items-center cursor-pointer hover:bg-gray-100 transition hover:border-yellow-500 group" onclick="document.getElementById('file-input').click()">
+                    <span class="text-5xl mb-4 group-hover:scale-110 transition">📸</span>
+                    <p class="text-gray-600 font-bold" data-i18n="upload_instruction">사진을 올려주시오</p>
+                    <p class="text-xs text-gray-400 mt-2" data-i18n="upload_disclaimer">사진은 어디에도 저장되지 않습니다</p>
+                </div>
+                <input type="file" id="file-input" class="hidden" accept="image/*" onchange="handleImageUpload(event)">
+                
+                <div class="mt-6 w-full">
+                    <button onclick="document.getElementById('file-input').click()" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-4 rounded-xl transition shadow-md" data-i18n="upload_button">
+                        사진 업로드 / 촬영
+                    </button>
+                </div>
+            </div>
+
+            <div id="loading-section" class="hidden flex-col items-center justify-center py-10">
+                <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-16 w-16 mb-4"></div>
+                <h2 class="text-xl font-bold text-gray-700 animate-pulse" data-i18n="loading_title">관상을 살피는 중...</h2>
+                <p class="text-gray-500 text-sm mt-2" data-i18n="loading_subtitle">AI가 눈, 코, 입을 분석하고 있습니다.</p>
+            </div>
+
+            <div id="result-section" class="hidden flex-col items-center">
+                <h2 class="text-2xl font-king text-blue-900 mb-4" data-i18n="result_title">"자네는... <span id="result-name" class="text-yellow-600">링컨</span> 상이구만!"</h2>
+                
+                <div class="flex w-full gap-2 mb-6">
+                    <div class="w-1/2">
+                        <img id="user-image-preview" src="" class="w-full h-40 object-cover rounded-lg shadow-inner bg-gray-200" alt="내 사진">
+                        <p class="text-center text-xs text-gray-500 mt-1" data-i18n="my_photo">나</p>
+                    </div>
+                    <div class="w-1/2">
+                        <img id="president-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Abraham_Lincoln_O-77_matte_collodion_print.jpg/440px-Abraham_Lincoln_O-77_matte_collodion_print.jpg" class="w-full h-40 object-cover rounded-lg shadow-inner bg-gray-200" alt="대통령 사진">
+                        <p id="result-label" class="text-center text-xs text-gray-500 mt-1" data-i18n="president_name_label">에이브러햄 링컨</p>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 w-full p-4 rounded-xl border border-blue-100 mb-6 text-center">
+                    <p class="text-lg font-bold text-blue-800 mb-1" data-i18n="similarity_score_label">싱크로율 <span id="similarity-score">87</span>%</p>
+                    <p class="text-sm text-gray-700 word-keep-all" data-i18n="result_description">"인내심이 강하고 포용력이 넓은 리더형입니다. 수염을 기르면 운수대통할 관상이로군요."</p>
+                </div>
+
+                <div class="flex w-full gap-2">
+                    <button class="flex-1 bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 rounded-lg transition text-sm" data-i18n="share_button">
+                        카카오톡 공유
+                    </button>
+                    <button onclick="reset()" class="flex-1 bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 rounded-lg transition text-sm" data-i18n="retry_button">
+                        다시 하기
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        
+        <footer class="bg-gray-50 p-4 text-center text-xs text-gray-400">
+            &copy; 2024 Presidential Face AI
+        </footer>
+    </div>
+
+    <script src="update-language.js"></script>
+    <script>
+        // DOM 요소 가져오기
+        const uploadSection = document.getElementById('upload-section');
+        const loadingSection = document.getElementById('loading-section');
+        const resultSection = document.getElementById('result-section');
+        const userImgPreview = document.getElementById('user-image-preview');
+
+        // 이미지 업로드 처리 함수
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // 1. 사용자 이미지 미리보기 설정
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                userImgPreview.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+
+            // 2. 화면 전환 (업로드 -> 로딩)
+            uploadSection.classList.add('hidden');
+            loadingSection.classList.remove('hidden');
+            loadingSection.classList.add('flex');
+
+            // 3. (가짜) AI 분석 시뮬레이션 - 2.5초 뒤 결과 표시
+            setTimeout(() => {
+                loadingSection.classList.add('hidden');
+                loadingSection.classList.remove('flex');
+                
+                resultSection.classList.remove('hidden');
+                resultSection.classList.add('flex');
+                
+                // 여기에 실제로는 백엔드에서 받은 데이터(이름, 확률 등)를 넣어야 함
+                // document.getElementById('result-name').innerText = "세종대왕"; 
+                // document.getElementById('similarity-score').innerText = "92";
+            }, 2500); 
+        }
+
+        // 다시 하기 버튼 기능
+        function reset() {
+            resultSection.classList.add('hidden');
+            resultSection.classList.remove('flex');
+            
+            uploadSection.classList.remove('hidden');
+            
+            // 파일 인풋 초기화
+            document.getElementById('file-input').value = '';
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage('ko');
+        });
+    </script>
 </body>
 </html>

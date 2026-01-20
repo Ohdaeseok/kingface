@@ -20,6 +20,13 @@ const translations = {
         form_email_label: "이메일",
         form_message_label: "문의 내용",
         form_submit_button: "문의하기",
+        qna_title: "자주 묻는 질문",
+        qna_question_1: "이 서비스는 어떻게 작동하나요?",
+        qna_answer_1: "AI 얼굴 인식 기술을 사용하여 사용자가 업로드한 사진과 역대 대통령들의 얼굴 데이터를 비교 분석합니다. 얼굴의 주요 특징점을 추출하여 가장 높은 유사도를 보이는 인물을 찾아 결과를 알려드립니다.",
+        qna_question_2: "제 사진은 안전하게 관리되나요?",
+        qna_answer_2: "네, 그럼요. 사용자가 업로드한 사진은 서버에 저장되지 않으며, 분석이 끝나면 즉시 폐기됩니다. 저희는 사용자의 개인정보를 매우 중요하게 생각합니다.",
+        qna_question_3: "결과는 얼마나 정확한가요?",
+        qna_answer_3: "이 서비스는 오직 재미를 위해 만들어졌습니다. 결과는 과학적인 근거가 없으며, 실제 관상학적 의미를 갖지 않습니다. 가벼운 마음으로 즐겨주세요!",
     },
     en: {
         title: "Do I have the face of a king?",
@@ -42,6 +49,13 @@ const translations = {
         form_email_label: "Email",
         form_message_label: "Inquiry Details",
         form_submit_button: "Submit Inquiry",
+        qna_title: "Frequently Asked Questions",
+        qna_question_1: "How does this service work?",
+        qna_answer_1: "We use AI facial recognition technology to compare your uploaded photo with the facial data of past presidents. The AI extracts key facial features to find the person with the highest similarity and presents the result.",
+        qna_question_2: "Is my photo handled securely?",
+        qna_answer_2: "Yes, absolutely. Your uploaded photos are not stored on our servers and are immediately discarded after analysis. We take your privacy very seriously.",
+        qna_question_3: "How accurate are the results?",
+        qna_answer_3: "This service is for entertainment purposes only. The results have no scientific basis and do not hold any real physiognomic meaning. Please enjoy it with a light heart!",
     }
 };
 

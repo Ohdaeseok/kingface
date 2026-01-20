@@ -92,6 +92,36 @@
 
         </div>
         
+        <section class="p-6 bg-gray-50 border-t border-gray-100">
+            <h2 class="text-xl font-bold text-gray-800 mb-4" data-i18n="partnership_inquiry_title">제휴 문의</h2>
+            <p class="text-sm text-gray-600 mb-4" data-i18n="partnership_inquiry_description">
+                저희 서비스와의 제휴를 원하시면 아래 양식을 작성해주세요.
+            </p>
+            <form action="https://formspree.io/f/xvzzqbrl" method="POST" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700" data-i18n="form_name_label">이름</label>
+                    <input type="text" name="name" id="name" required
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700" data-i18n="form_email_label">이메일</label>
+                    <input type="email" name="email" id="email" required
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-700" data-i18n="form_message_label">문의 내용</label>
+                    <textarea name="message" id="message" rows="4" required
+                              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"></textarea>
+                </div>
+                <div>
+                    <button type="submit"
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition shadow-md" data-i18n="form_submit_button">
+                        문의하기
+                    </button>
+                </div>
+            </form>
+        </section>
+
         <footer class="bg-gray-50 p-4 text-center text-xs text-gray-400">
             &copy; 2024 Presidential Face AI
         </footer>

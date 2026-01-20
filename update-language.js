@@ -14,6 +14,12 @@ const translations = {
         result_description: '"인내심이 강하고 포용력이 넓은 리더형입니다. 수염을 기르면 운수대통할 관상이로군요."',
         share_button: "카카오톡 공유",
         retry_button: "다시 하기",
+        partnership_inquiry_title: "제휴 문의",
+        partnership_inquiry_description: "저희 서비스와의 제휴를 원하시면 아래 양식을 작성해주세요.",
+        form_name_label: "이름",
+        form_email_label: "이메일",
+        form_message_label: "문의 내용",
+        form_submit_button: "문의하기",
     },
     en: {
         title: "Do I have the face of a king?",
@@ -30,6 +36,12 @@ const translations = {
         result_description: '"You are a patient and inclusive leader. Growing a beard will bring you great fortune."',
         share_button: "Share on KakaoTalk",
         retry_button: "Retry",
+        partnership_inquiry_title: "Partnership Inquiry",
+        partnership_inquiry_description: "If you wish to partner with our service, please fill out the form below.",
+        form_name_label: "Name",
+        form_email_label: "Email",
+        form_message_label: "Inquiry Details",
+        form_submit_button: "Submit Inquiry",
     }
 };
 
